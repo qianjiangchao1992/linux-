@@ -1,0 +1,97 @@
+﻿ctrl+insert 复制 shift+insert 粘贴 条件表达式要放在方括号之间，并且要有空格，例如: [$a==$b] 是错误的，必须写成 [ $a == $b ]
+-o 代表或运算 ！非运算 -a与运算   逻辑运算符 ||或  &&与运算
+注意，$10 不能获取第十个参数，获取第十个参数需要${10}。<font style="background-color: #000000"></font>当n>=10时，需要使用${n}来获取参数。
+<font style="background-color: #020200">---很重要Shell 输入/输出重定向</font>
+--
+shell中使用()表示数组，元素用空格来分割。
+https://blog.csdn.net/bitboss/article/details/73019967 shell学习总结
+变量的作用域: 在shell 中，变量默认都具有全局属性，如果需要局部的变量则需要在变量的声明处加 local 关键字。如： local  a=10
+http://www.92csz.com/study/linux/12.htm shell基础知识
+在bash下，可以使用*来匹配零个或多个字符，而用?匹配一个字符。
+新建文件夹：mkdir test1（新建test1文件夹）
+切换到该目录：cd test1（假设存在t.txt）
+查看该目录文件：cat t.txt
+返回更目录：cd \
+返回父目录的父目录：cd ../..
+vim 文件  按insert  复制粘贴进去，然后 esc 退出 然后：wq 保存
+vi +文件名  insert 内容 esc退出 :wq 保存
+mkdir +文件夹  vi +文件名
+ hive -f 文件名.hql 执行。
+ 删除文件
+ linux下删除文件夹的命令
+使用rm -rf 目录名字 命令即可
+
+
+hive : 查看某个表在HDFS上的路径  --->show create table temp.game50000_4tiaojian();
+hive -e "select * from temp.game50000_4tiaojian;" > game50000_4tiaojian.txt 把结果直接输出到文件中
+
+-r 就是向下递归，不管有多少级目录，一并删除
+-f 就是直接强行删除，不作任何提示的意思
+
+mv test Test（文件重命名）
+
+eg
+
+删除文件夹实例：rm -rf /var/log/httpd/access
+将会删除/var/log/httpd/access目录以及其下所有文件、文件夹
+
+删除文件使用实例：rm -f /var/log/httpd/access.log
+将会强制删除/var/log/httpd/access.log这个文件；
+
+linux 查看文件所在目录一般用：which 或者 whereis
+1.which 用来查看当前要执行的命令所在的路径
+举个例子：
+[root@admin ~]# which python
+/usr/bin/python
+
+2.whereis
+whereis 用来查看一个命令或者文件所在的路径
+举个例子：
+[root@admin ~]# whereis python
+python: /usr/bin/python /usr/bin/python2.6 /usr/lib/python2.6 /usr/lib64/python2.6 /usr/include/python2.6 /usr/local/python /usr/share/man/man1/python.1.gz
+3.find / -name 名称
+create table if not exists temp.daikuanapp(appname string);
+LOAD DATA LOCAL INPATH '/home/qizhi_user/qianjiangchao/daikuanapp.txt' OVERWRITE INTO TABLE temp.daikuanapp;（
+路径：1.先sudo su 2.find / -name daikuanapp.txt
+
+locate与find 不同: find 是去硬盘找，locate 只在/var/lib/slocate资料库中找。
+
+1.cat 
+cat test.txt (查看test.txt文件)
+cat /dev/null > test.txt(清空test.txt内容）
+2.chmod
+chmod主要用来权限赋予
+u表示该文件拥有者 g表示与文件拥有者属于同一个群组 o表示其他以外的人   a表示所有人
++表示增加权限 -表示取消权限 =表示唯一设定权限
+.r表示可读取 w表示可写入 x表示可执行
+-R : 对目前目录下的所有文件与子目录进行相同的权限变更(即以递回的方式逐个变更)
+3.mv
+改文件名  更改路径
+mv aaa bbb （把 aaa文件改为bbb)
+mv info/ logs(将info目录放在logs下）
+4.rm
+rm test.txt（删除test.txt会询问）
+rm -f test.txt（直接删除test.txt文件）
+rm -r (删除目录，慎用！)
+
+5.cd
+"~" 也表示为 home 目录 的意思，"." 则是表示目前所在的目录，".." 则表示目前目录位置的上一层目录。
+cd qianjiangchao(跳到我的目录下）
+cd ~ 跳到自己的home目录
+cd .. 跳到自己的上层目录
+ 
+6.du
+du 查看整个目录下文件大小
+du -h  查看整个目录下文件大小 方便阅读显示K MB
+du -h 文件或者目录名（查看文件大小或者该目录整个文件大小）
+du -ah 查看整个目录下各个文件大小
+7.mkdir(建立目录名)
+mkdir [-p] dirName (参数p主要是确定dirName是否存在，不存在就建立）
+mkdir -p BBB/Test （在BBB目录下建立一个Test的子目录）
+8.sudo
+sudo -V 显示版本号
+
+重要：
+解决Windows上传到linux文件乱码问题（使用如下命令把gbk 转化为utf8）
+
+iconv -f gbk -t utf-8 /hadoop/nfsfile/tmp/appNAME.txt > appname.txt
