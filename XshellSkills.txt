@@ -1,0 +1,1 @@
+1使用Zmodem(默认)来进行文件上传或下载：rz（从windows上传）,sz(从linux下载)
