@@ -1,0 +1,25 @@
+hadoop使用命令：
+启动hdfs集群：start-dfs.sh
+启动yarn集群：start-yarn.sh
+查看HDFS根目录:hadoop fs -ls /
+创建级联文件夹：hadoop fs -mkdir -p /aa/bb/cc
+查看HDFS根目录下文件及文件下的子文件：hadoop fs -ls -R /aa
+上传文件：
+hadoop fs -put words.txt /aa
+或者
+hadoop fs -copyFromLocal words.txt /aa/bb
+下载文件:
+hadoop fs -get aa/words.txt ~/newwords.txt
+或者
+hadoop fs copyToLocal /aa/words.txt ~/newwords.txt
+合并下载：
+hadoop fs -getmerge /aa/words.txt /test/words.txt ~/2words.txt
+复制：
+hadoop fs -cp /aa/words.txt /test(将aa目录下的words.txt文件复制到test目录下)
+
+删除：
+hadoop fs -rm /aa/bb/cc/words.txt（删除文件）
+hadoop fs -rmdir /aa/bb/cc(删除空目录)
+hadoop fs -rm -r /word(强制删除不论word是否为空)
+剪切本地文件到HDFS：
+hadoop fs -moveFromLocal ~/words.txt /aa(剪切)
